@@ -1,6 +1,6 @@
 # context.copymovetostorage
 
-Idea originated from AbelTesfaye /context.copytostorage.  Didn't work in latest Kodi.  With the assistance of AI, i upgraded to handle the latest KODI as of March of 2026.  This is designed to copy/move files from one SMB path to another, and then update the library for the destination folder.
+Idea originated from AbelTesfaye /context.copytostorage.  Didn't work in latest Kodi.  With AbelTesfay original code and the assistance of AI and my coding knowledge, i upgraded/rewrote to handle the latest KODI as of March of 2026.  This is designed to copy/move files from one SMB path to another, and then update the library for the destination folder.
 
 I use this because i have a path that is outside of the normal library.  Where the files originate from.  I wanted to be able to copy them to my smb paths where the kodi library scan within KODI.  After the copy is succesful, it will give you a query as to whether you wish to delete the source.  
 
