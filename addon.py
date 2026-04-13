@@ -7,7 +7,8 @@ import os
 import threading
 import json
 
-__addon__ = xbmcaddon.Addon()
+ADDON = xbmcaddon.Addon()
+ask_delete = ADDON.getSettingBool('ask_delete')
 
 def background_copy(src, dest, filename):
     """
@@ -50,15 +51,20 @@ def background_copy(src, dest, filename):
                 dest_dir = os.path.dirname(dest)
                 xbmc.executebuiltin(f'UpdateLibrary(video, "{dest_dir}")')
                 
-                if xbmcgui.Dialog().yesno("Transfer Complete", f"Successfully copied.\n{filename}\nDelete source file?"):
-                    if not xbmcvfs.delete(src):
-                        xbmcgui.Dialog().notification("Failed!", "Source was NOT deleted!")
+                if ask_delete :
+                    #Copy Completed - Succesfully copied {filename} Do you want to delete?
+                    if xbmcgui.Dialog().yesno(ADDON.getLocalizedString(32004), f"{ADDON.getLocalizedString(32005)}\n{filename}\n{ADDON.getLocalizedString(32002)}"):
+                        if not xbmcvfs.delete(src):
+                            #Unable to delete source.
+                            xbmcgui.Dialog().notification(ADDON.getLocalizedString(32006), ADDON.getLocalizedString(32006))
+                else:
+                    xbmcgui.Dialog().notification(ADDON.getLocalizedString(32004),ADDON.getLocalizedString(32005), xbmcgui.NOTIFICATION_INFO, 3000) 
             else:
                 # Fixed variable name from current_size to total_size for logging
                 xbmc.log(f"COPY_ERROR: Size mismatch! Source: {total_size} Dest: {size_dest}", xbmc.LOGERROR)
-                xbmcgui.Dialog().notification("Error", "Transfer corrupted.")
+                xbmcgui.Dialog().notification("Error", ADDON.getLocalizedString(32007))
         else:
-            xbmcgui.Dialog().notification("Error", "Destination file missing.")
+            xbmcgui.Dialog().notification("Error", ADDON.getLocalizedString(32008))
 
     except Exception as e:
         xbmc.log(f"MONITOR_ERROR: {repr(e)}", xbmc.LOGERROR)
@@ -70,7 +76,7 @@ def main():
         li_path = sys.listitem.getPath()
         if not li_path: return
 
-        dest_folder = xbmcgui.Dialog().browseSingle(3, "Select Destination", "files")
+        dest_folder = xbmcgui.Dialog().browseSingle(3, ADDON.getLocalizedString(32003), "files")
         if not dest_folder: return
 
         filename = os.path.basename(li_path.rstrip('/'))
@@ -78,6 +84,10 @@ def main():
             filename = sys.listitem.getLabel() or "video_file"
             
         dest_path = os.path.join(dest_folder, filename)
+        
+        if xbmcvfs.exists(dest_path):
+            if not xbmcgui.Dialog().yesno(ADDON.getLocalizedString(32010), f"{ADDON.getLocalizedString(32011)}\n{dest_path}\n{ADDON.getLocalizedString(32012)}"):
+                return
 
         t = threading.Thread(target=background_copy, args=(li_path, dest_path, filename))
         t.daemon = True

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="context.copytostorage" name="Copy file to storage" version="1.0.1" provider-name="BMOC">
+<addon id="context.copytostorage" name="Copy file to storage" version="1.0.4" provider-name="BMOC">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
   </requires>
   <extension point="kodi.context.item">
     <menu id="kodi.core.main">
       <item library="addon.py">
-        <label>Copy to ...</label>
+        <label>32000</label>
         <visible>[Window.IsVisible(videofiles) | Window.IsVisible(videos)] + !ListItem.IsFolder + !String.IsEmpty(ListItem.Path)</visible>
       </item>
     </menu>
@@ -15,6 +15,7 @@
     <platform>all</platform>
     <summary lang="en_GB">Copy file via SMB/Local to another path</summary>
     <description lang="en_GB">Copy file from one location to another with option to delete source after successful copy.</description>
+    <icon>icon.png</icon>
     <license>GPL-3.0-only</license>
   </extension>
 </addon>

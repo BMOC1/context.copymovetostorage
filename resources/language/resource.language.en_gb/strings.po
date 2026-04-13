@@ -5,65 +5,64 @@ msgid ""
 msgstr ""
 
 msgctxt "#32000"
-msgid "Copy To storage"
+msgid "Copy to..."
 msgstr ""
 
-
 msgctxt "#32001"
-msgid "ERROR"
+msgid "Ask to delete after successful copy?"
 msgstr ""
 
 
 msgctxt "#32002"
-msgid "Could not resolve path info for:"
+msgid "Delete source file?"
 msgstr ""
 
 
 msgctxt "#32003"
-msgid "Copying finished"
+msgid "Select Destination Path"
 msgstr ""
 
 
 msgctxt "#32004"
-msgid "Done"
+msgid "Copy Completed"
 msgstr ""
 
 
 msgctxt "#32005"
-msgid "Done copying %s files with %s error"
+msgid "Successfully copied"
 msgstr ""
 
 
 msgctxt "#32006"
-msgid "ERROR COPYING"
+msgid "Unable to delete source!"
 msgstr ""
 
 
 msgctxt "#32007"
-msgid "Failed to copy"
+msgid "ERROR - Destination file corrupted."
 msgstr ""
 
 
 msgctxt "#32008"
-msgid "Copying: %s/%s"
+msgid "File did not copy!"
 msgstr ""
 
 
 msgctxt "#32009"
-msgid "Done copying %s files with %s error"
+msgid "Error!"
 msgstr ""
 
 
 msgctxt "#32010"
-msgid "Copy file"
+msgid "Copy Alert"
 msgstr ""
 
 
 msgctxt "#32011"
-msgid "files"
+msgid "File already exists at destination path!"
 msgstr ""
 
 
 msgctxt "#32012"
-msgid "File not copied"
+msgid "\nOverwrite file?"
 msgstr ""
